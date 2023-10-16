@@ -1,5 +1,5 @@
 
-stm32-u585-disco.elf:     file format elf32-littlearm
+USB.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -115,8 +115,8 @@ int main(void)
  8000288:	2140      	movs	r1, #64	; 0x40
  800028a:	4806      	ldr	r0, [pc, #24]	; (80002a4 <main+0x30>)
  800028c:	f000 ff5c 	bl	8001148 <HAL_GPIO_TogglePin>
-	HAL_Delay(1000);
- 8000290:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+	HAL_Delay(2000);
+ 8000290:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
  8000294:	f000 fc60 	bl	8000b58 <HAL_Delay>
 	HAL_GPIO_TogglePin(GPIOH, LED_GREEN_Pin);
  8000298:	2180      	movs	r1, #128	; 0x80

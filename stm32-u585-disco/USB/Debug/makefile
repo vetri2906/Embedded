@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := stm32-u585-disco
+BUILD_ARTIFACT_NAME := USB
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-stm32-u585-disco.elf \
+USB.elf \
 
 MAP_FILES += \
-stm32-u585-disco.map \
+USB.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-stm32-u585-disco.list \
+USB.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: stm32-u585-disco.elf secondary-outputs
+main-build: USB.elf secondary-outputs
 
 # Tool invocations
-stm32-u585-disco.elf stm32-u585-disco.map: $(OBJS) $(USER_OBJS) E:\1_git\Firmware\USB\stm32-u585-disco\STM32U585AIIXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "stm32-u585-disco.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"E:\1_git\Firmware\USB\stm32-u585-disco\STM32U585AIIXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32-u585-disco.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+USB.elf USB.map: $(OBJS) $(USER_OBJS) E:\1_git\Firmware\stm32-u585-disco\USB\STM32U585AIIXQ_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "USB.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"E:\1_git\Firmware\stm32-u585-disco\USB\STM32U585AIIXQ_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-stm32-u585-disco.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "stm32-u585-disco.list"
+USB.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "USB.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout stm32-u585-disco.elf stm32-u585-disco.list stm32-u585-disco.map
+	-$(RM) USB.elf USB.list USB.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

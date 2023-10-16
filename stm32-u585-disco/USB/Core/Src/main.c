@@ -100,7 +100,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	HAL_GPIO_TogglePin(GPIOH, LED_RED_Pin);
-	HAL_Delay(1000);
+	HAL_Delay(2000);
 	HAL_GPIO_TogglePin(GPIOH, LED_GREEN_Pin);
 
   }
